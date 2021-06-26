@@ -35,7 +35,6 @@ a {
 
 body {
   position: relative;
-  height: 100vh;
 }
 
 .account-section {
@@ -239,7 +238,7 @@ body {
   padding: 10px;
 }
 .message-box ul {
-  height: 85vh;
+  height: 100%;
   overflow: auto;
 }
 .message-box ul li {
@@ -302,7 +301,7 @@ body {
     left: 0;
     right: 0;
     z-index: 7;
-    background: rgba(0, 0, 0, 0.49);
+    background: rgba(255, 255, 255, 0.69);
     width: 100% !important;
     transform: translateX(-1200px);
     transition: all 0.3s ease-in;
@@ -340,9 +339,10 @@ body {
 
   .message-box {
     width: 100%;
-    height: 90vh;
+    height: 88vh;
   }
   .message-box ul {
+    height: 100%;
     z-index: 3;
   }
   .message-box ul li {
@@ -379,17 +379,17 @@ body {
 
   .message-box {
     width: 100%;
-    height: 100vh;
+    height: 88vh;
   }
   .message-box ul {
-    height: 90vh;
+    height: 100%;
   }
   .message-box .input-section {
     width: 100%;
     height: 100px;
     background: grey;
     position: absolute;
-    bottom: 30px;
+    bottom: -80px;
     left: 0;
   }
 }
