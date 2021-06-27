@@ -2,7 +2,8 @@
 
 body{
     position: relative;
-//    height: 100vh;
+    overflow: hidden;
+    height: 100vh;
 }
 .account-section{
     position: fixed;
@@ -177,7 +178,7 @@ body{
     }
 }
 .main-bar{
-     background: orange;
+//     background: orange;
     height:100vh;
     padding-right: 0!important;
         padding-left: 0 !important;
@@ -188,7 +189,7 @@ body{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding:10px 15px;
+        padding:19px 15px;
         
         .left-nav{
             .btn{
@@ -211,7 +212,7 @@ body{
 .message-box{
     width:100%;
     height:90vh;
-    background: black;
+    background: #1f1f1f;
     position: relative;
     padding:10px;
     
@@ -220,13 +221,31 @@ body{
         overflow: auto;
         li{
             display: flex;
-            justify-content: space-between;
+//            justify-content: space-between;
 //            align-items: center;
             max-width: 380px;
             background: #258c60;
+            color:#c0ded1;
             margin:15px;
             padding:15px;
+            position: relative;
 //            display: inline-block;
+            .delete-btn{
+                position: absolute;
+                top:5px;
+                right:10px;
+                transform: scale(1.1);
+//                transition: all 0.3s ease-in-out;
+                &:active{
+                    transform: scale(0.93);
+                }
+                i{
+                    color:black;
+                    &:hover{
+                        color:red;
+                    }
+                }
+            }
         }
     }
     .input-section{
@@ -234,12 +253,12 @@ body{
         height:70px;
         background: #191515;
         position: absolute;
-        bottom:-20px;
+        bottom:0px;
         left:0;
 //        position: relative;
         display: flex;
         align-items: center;
-        justify-content: space-around;
+//        justify-content: space-around;
         .input-user-image{
             width:45px;
             height:45px;
@@ -251,22 +270,20 @@ body{
                 height:100%;
             }
         }
-        input{
+        .input-form{
             width:80%;
-            margin-left:10px;
-            background:transparent;
-            border:none;
-            border-bottom:0.4px solid grey;
-            color:#fff;
-        }
-        .fa-paper-plane{
-            font-size: 30px;
-//            margin-left:-20px;
-            position: absolute;
-            right:25px;
-            top:12px;
-            color:#fff;
-            cursor:pointer;
+            margin-left:6px;
+            display: flex;
+            input{
+                width:100%;
+            }
+            .submit-btn{
+                background:#258c60;
+                border:none;
+                padding:13px;
+                border-radius: 50%;
+                margin-left:10px;
+            }
         }
        
     }
@@ -346,7 +363,7 @@ body{
         }
         .fa-paper-plane{
 //            margin-left:-4px;
-            right:14px;
+            right:10px !important;
             top:12px;
         }
     }
@@ -377,10 +394,10 @@ body{
     }
     .input-section{
         width:100%;
-        height:100px;
-        background: grey;
+//        height:100px;
+        background: #191515;
         position: absolute;
-        bottom:-80px;
+        bottom:-60px;
         left:0;
     }
 }

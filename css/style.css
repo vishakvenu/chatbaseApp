@@ -35,6 +35,8 @@ a {
 
 body {
   position: relative;
+  overflow: hidden;
+  height: 100vh;
 }
 
 .account-section {
@@ -199,7 +201,6 @@ body {
 }
 
 .main-bar {
-  background: orange;
   height: 100vh;
   padding-right: 0 !important;
   padding-left: 0 !important;
@@ -211,7 +212,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  padding: 19px 15px;
 }
 .main-bar nav .left-nav {
   display: flex;
@@ -233,7 +234,7 @@ body {
 .message-box {
   width: 100%;
   height: 90vh;
-  background: black;
+  background: #1f1f1f;
   position: relative;
   padding: 10px;
 }
@@ -243,22 +244,37 @@ body {
 }
 .message-box ul li {
   display: flex;
-  justify-content: space-between;
   max-width: 380px;
   background: #258c60;
+  color: #c0ded1;
   margin: 15px;
   padding: 15px;
+  position: relative;
+}
+.message-box ul li .delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  transform: scale(1.1);
+}
+.message-box ul li .delete-btn:active {
+  transform: scale(0.93);
+}
+.message-box ul li .delete-btn i {
+  color: black;
+}
+.message-box ul li .delete-btn i:hover {
+  color: red;
 }
 .message-box .input-section {
   width: 100%;
   height: 70px;
   background: #191515;
   position: absolute;
-  bottom: -20px;
+  bottom: 0px;
   left: 0;
   display: flex;
   align-items: center;
-  justify-content: space-around;
 }
 .message-box .input-section .input-user-image {
   width: 45px;
@@ -271,21 +287,20 @@ body {
   width: 100%;
   height: 100%;
 }
-.message-box .input-section input {
+.message-box .input-section .input-form {
   width: 80%;
-  margin-left: 10px;
-  background: transparent;
-  border: none;
-  border-bottom: 0.4px solid grey;
-  color: #fff;
+  margin-left: 6px;
+  display: flex;
 }
-.message-box .input-section .fa-paper-plane {
-  font-size: 30px;
-  position: absolute;
-  right: 25px;
-  top: 12px;
-  color: #fff;
-  cursor: pointer;
+.message-box .input-section .input-form input {
+  width: 100%;
+}
+.message-box .input-section .input-form .submit-btn {
+  background: #258c60;
+  border: none;
+  padding: 13px;
+  border-radius: 50%;
+  margin-left: 10px;
 }
 
 @media (max-width: 759px) {
@@ -360,7 +375,7 @@ body {
     margin: 0px;
   }
   .input-section .fa-paper-plane {
-    right: 14px;
+    right: 10px !important;
     top: 12px;
   }
 }
@@ -386,10 +401,9 @@ body {
   }
   .message-box .input-section {
     width: 100%;
-    height: 100px;
-    background: grey;
+    background: #191515;
     position: absolute;
-    bottom: -80px;
+    bottom: -60px;
     left: 0;
   }
 }

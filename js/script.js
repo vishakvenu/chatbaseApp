@@ -29,3 +29,20 @@ CreateAccountLink.onclick=()=>{
 CreateAccountModal.classList.remove("hide-modal")
     CreateAccountModal.classList.add('show-modal')
 }
+
+const inputForm=document.querySelector(".input-form")
+const MessageList=document.querySelector("#messageList")
+console.log
+inputForm.onsubmit=(e)=>{
+    e.preventDefault()
+    const value=inputForm['txt-message'].value
+    console.log(value)
+    
+    const li=document.createElement("li")
+    li.innerHTML=`<div class="message">${value}</div>
+                  <div class="delete-btn">
+                      <i class="fas fa-trash-alt"></i>
+                  </div>`
+    MessageList.appendChild(li)
+    inputForm.reset()
+}
