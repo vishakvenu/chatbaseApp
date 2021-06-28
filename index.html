@@ -146,7 +146,12 @@
           </nav> 
           <div class="message-box">
               <ul id="messageList">
-                 
+                 <li>
+                     <div class="message">${value}</div>
+                  <div class="delete-btn">
+                      <i class="fas fa-trash-alt"></i>
+                  </div>
+                 </li>
                   
               </ul>
               <div class="input-section">
@@ -154,7 +159,7 @@
                       <img src="img/pexels-daniel-torobekov-4628295.jpg">
                   </div>
                   <form class="input-form">
-                  <input type="text" placeholder="write message" id="txt-message">
+                  <input type="text" placeholder="write message" id="txt-message" autocomplete="off">
                   <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i></button>
                   </form>
               </div>

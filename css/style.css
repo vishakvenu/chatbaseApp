@@ -35,8 +35,6 @@ a {
 
 body {
   position: relative;
-  overflow: hidden;
-  height: 100vh;
 }
 
 .account-section {
@@ -114,6 +112,9 @@ body {
   border-radius: 50%;
   background: black;
   overflow: hidden;
+  box-shadow: 24px 20px 25px -7px rgba(0, 0, 0, 0.69);
+  -webkit-box-shadow: 24px 20px 25px -7px rgba(0, 0, 0, 0.69);
+  -moz-box-shadow: 24px 20px 25px -7px rgba(0, 0, 0, 0.69);
 }
 .left-bar .profile-image img {
   width: 100%;
@@ -249,7 +250,21 @@ body {
   color: #c0ded1;
   margin: 15px;
   padding: 15px;
+  border-radius: 14px;
+  margin-left: 24px;
   position: relative;
+  box-shadow: inset -7px -7px 14px #175f40, inset 7px 7px 14px #5bb58f;
+}
+.message-box ul li:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 5px;
+  left: -18px;
+  border-style: solid;
+  border-width: 0 0px 20px 20px;
+  box-shadow: inset -7px -7px 14px #175f40, inset 7px 7px 14px #5bb58f;
+  border-color: transparent transparent #47a07a transparent;
 }
 .message-box ul li .delete-btn {
   position: absolute;
@@ -298,9 +313,9 @@ body {
 .message-box .input-section .input-form .submit-btn {
   background: #258c60;
   border: none;
-  padding: 13px;
+  padding: 10px;
   border-radius: 50%;
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 @media (max-width: 759px) {
