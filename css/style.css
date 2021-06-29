@@ -45,29 +45,113 @@ body {
   right: 0;
   height: 100vh;
   width: 100%;
+  background-image: url(../img/pexels-d%C6%B0%C6%A1ng-nh%C3%A2n-1529881.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   z-index: 1;
-  background: #0f360f;
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-1600px);
+  transition: all 0.3s ease-in;
 }
 .account-section .modal-box {
   position: absolute;
   width: 700px;
-  height: 500px;
-  background: white;
+  transition: all 0.4s ease-in-out;
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .account-section .accountCreation {
   display: none;
+  background: red;
 }
 .account-section .show-modal {
   display: block;
 }
 .account-section .hide-modal {
-  display: none;
+  display: none !important;
 }
 
+.account-section .login {
+  padding: 30px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  animation: heighter 0.4s ease-out forwards;
+}
+.account-section .login .fa-user {
+  font-size: 77px;
+  padding: 20px 25px;
+  background: #fff;
+  color: grey;
+  border-radius: 98px;
+  box-shadow: 37px 25px 39px -9px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 37px 25px 39px -9px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 37px 25px 39px -9px rgba(0, 0, 0, 0.6);
+}
+.account-section .login h2 {
+  color: #595954;
+  margin: 5px 0px;
+}
+.account-section .login .login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  width: 400px;
+}
+.account-section .login .login-form input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: none;
+}
+.account-section .login .login-form .loginBtn {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 25px;
+  background: #2E4DA7;
+  border: none;
+  border-right: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.account-section .login .login-form .loginBtn:hover {
+  border: 1px solid #0c3162;
+  background: none;
+  color: #0a2953;
+}
+.account-section .login .login-form h4 {
+  color: red;
+  margin: 5px 0;
+}
+.account-section p {
+  margin-top: 7px;
+}
+.account-section .CreateAccount {
+  color: #44D5EE;
+  text-decoration: underline;
+}
+.account-section .CreateAccount:hover {
+  color: red;
+}
+
+@keyframes heighter {
+  from {
+    height: 0;
+  }
+  to {
+    height: 500px;
+  }
+}
 .scetion-wrap {
   position: relative;
 }
@@ -322,6 +406,9 @@ body {
   .account-section .modal-box {
     width: 320px;
     height: 460px;
+  }
+  .account-section .login .login-form {
+    width: 300px;
   }
 
   .side-section {

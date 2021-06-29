@@ -13,9 +13,17 @@
 	<body>
   <section id="account-section" class="account-section">
      <div class="modal-box login" id="LoginModal">
+     <i class="fas fa-user"></i>
       <h2>Login</h2>
-      or New here please
-      <a href="#" id="CreateAccount">Create account</a>
+      <form class="login-form">
+      <input type="text" id="email" placeholder="test@gmail.com" autocomplete="off" required>
+      <input type="password" id="password" placeholder="password" autocomplete="off" required>
+        <h4 class="error-message">Invalid Username</h4>
+         <button type="submit" id="loginBtn" class="loginBtn">Login</button>
+          
+      </form>
+      <p>New here!! please
+      <a href="#" id="CreateAccount" class="CreateAccount">Create account</a></p>
       </div>
      <div class="modal-box accountCreation" id="CreateAccountModal"><h2>Create Account</h2>
      or Already a user

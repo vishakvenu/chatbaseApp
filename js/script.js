@@ -11,26 +11,40 @@ overlay.onclick=(e)=>{
         sideSection.classList.remove("show-side-section")
     }
 }
+const loginModal=document.querySelector("#LoginModal")
+const firstLink=document.querySelector("#CreateAccount")
 
-const LoginLink=document.getElementById("Login")
-const LoginModal=document.getElementById("LoginModal")
-const CreateAccountLink=document.getElementById("CreateAccount")
-const CreateAccountModal=document.getElementById("CreateAccountModal")
+const createModal=document.querySelector("#CreateAccountModal")
 
-console.log(LoginModal)
+const secondLink=document.querySelector("#Login")
+const loginBtn=document.querySelector("#loginBtn")
 
-LoginLink.onclick=()=>{
-    LoginModal.classList.add('show-modal')
-    CreateAccountModal.classList.add("hide-modal")
+const mainModalSection=document.querySelector('#account-section')
+firstLink.onclick=()=>{
+    createModal.classList.add('show-modal')
+    loginModal.classList.add('hide-modal')
+}
+secondLink.onclick=()=>{
+    createModal.classList.remove('show-modal')
+    loginModal.classList.add('show-modal')
+    loginModal.classList.remove('hide-modal')
 }
 
-CreateAccountLink.onclick=()=>{
-    LoginModal.classList.remove('show-modal')
-CreateAccountModal.classList.remove("hide-modal")
-    CreateAccountModal.classList.add('show-modal')
+loginBtn.onclick=()=>{
+    mainModalSection.style.transform="translateY(-1800px)"
 }
+
+
+
+
+
+
+
+
+
 
 const inputForm=document.querySelector(".input-form")
+
 const MessageList=document.querySelector("#messageList")
 console.log
 inputForm.onsubmit=(e)=>{
