@@ -34,10 +34,24 @@ loginBtn.onclick=()=>{
     mainModalSection.style.transform="translateY(-1800px)"
 }
 
+const UserSearch=document.querySelector("#search-user")
+const arr=[]
+UserSearch.oninput=(e)=>{
+    let value=e.target.value.trim().toUpperCase()
+//    console.log(value)
+    const li=document.querySelectorAll("#user-profile")
+    li.forEach(item=>{
+        const userName=item.querySelector(".userName").innerText.toUpperCase()
+//        console.log(value,userName)
+       if(userName.indexOf(value)>-1){
+           item.style.display="flex"
+       }else{
+           item.style.display="none"
+       }
+  })
 
-
-
-
+  
+}
 
 
 
