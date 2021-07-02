@@ -13,10 +13,13 @@ body{
     right:0;
     height:100vh;
     width:100%;
-    background-image:url(../img/pexels-d%C6%B0%C6%A1ng-nh%C3%A2n-1529881.jpg);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+//    background-image:url(../img/pexels-d%C6%B0%C6%A1ng-nh%C3%A2n-1529881.jpg);
+//    background-attachment: fixed;
+//    background-repeat: no-repeat;
+//    background-size: cover;
+    background: rgba( 255, 255, 255, 0.45 );
+    backdrop-filter: blur( 13.0px );
+    -webkit-backdrop-filter: blur( 13.0px );
     z-index:1;
     display: flex;
     justify-content: center;
@@ -39,7 +42,7 @@ body{
     }
    .accountCreation{
         display: none;
-       background: red;
+//       background: red;
     }
     .show-modal{
         display:block;
@@ -89,16 +92,17 @@ body{
                 display: block;
                 margin:0 auto;
                 padding:10px 25px;
-                background: #2E4DA7;
+                background: #1BBC9B;
                 border:none;
                 border-right: 14px;
                 font-size: 15px;
                 font-weight: 600;
                 margin-top:8px;
+                color:#fff;
                 &:hover{
-                    border:1px solid #0c3162;
+                    border:1px solid #1BBC9B;
                     background: none;
-                    color:#0a2953;
+                    color:#2A517F
                 }
             }
             h4{
@@ -111,7 +115,7 @@ body{
         margin-top:7px;
     }
     .CreateAccount{
-        color:#44D5EE;
+        color:#2A517F;
         text-decoration:underline;
 //        display: inline;
         &:hover{
@@ -120,12 +124,90 @@ body{
     }
 }
 
+.accountCreation{
+    padding: 30px;
+    text-align: center;
+//    height:550px;
+    border-radius: 20px !important;
+    animation: heighter2 0.4s ease-out;
+    
+    h2{
+            margin:10px 0;
+        color:#595954;
+        }
+    p{
+        margin:0;
+        padding-bottom: 5px;
+    }
+    .createAccountForm{
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        position: relative;
+//        align-items: center;
+//        width:700px;
+        
+        input{
+            width:100%;
+            margin:10px 0;
+            padding:10px;
+            border:none;
+        }
+        .success-message{
+            width:100%;
+            background: #5FE07E;
+            padding:10px;
+            text-align: center;
+//            height:40px;
+            color:#fff;
+            font-size: 15px;
+            margin: 7px 0;
+            display: none;
+        }
+        button{
+            margin:10px auto;
+            padding:16px 30px;
+            border:0;
+            outline:0;
+            background: #1BBC9B;
+            color:#fff;
+            &:hover{
+                    border:1px solid #1BBC9B;
+                    background: none;
+                    color:#2A517F
+            }
+        }
+    }
+}
+.accountCreation{
+    .createAccountForm{
+        .file{
+            display: flex;
+            input{
+                padding:0;
+                margin:5px 0 3px 0;
+            }
+        }
+       
+}
+     a{
+            color:#2A517F;
+        }
+}
 @keyframes heighter{
     from{
         height:0;
     }
     to{
         height:500px;
+    }
+}
+@keyframes heighter2{
+    from{
+        height:0;
+    }
+    to{
+        height:660px;
     }
 }
 .scetion-wrap{
@@ -417,6 +499,9 @@ body{
                font-size:70px; 
             }
             }
+        .accountCreation{
+            height:600px;
+        }
     }
     .side-section{
         position: fixed;
