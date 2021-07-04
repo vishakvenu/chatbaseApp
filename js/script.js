@@ -17,7 +17,7 @@ const firstLink=document.querySelector("#CreateAccount")
 const createModal=document.querySelector("#CreateAccountModal")
 
 const secondLink=document.querySelector("#Login")
-const loginBtn=document.querySelector("#loginBtn")
+
 
 const mainModalSection=document.querySelector('#account-section')
 firstLink.onclick=()=>{
@@ -29,10 +29,38 @@ secondLink.onclick=()=>{
     loginModal.classList.add('show-modal')
     loginModal.classList.remove('hide-modal')
 }
+const loginForm=document.querySelector("#login-form")
+const spinner=document.querySelector("#Login-spinner")
 
-loginBtn.onclick=()=>{
-    mainModalSection.style.transform="translateY(-1800px)"
+loginForm.onsubmit=(e)=>{
+    e.preventDefault()
+    spinner.style.display="flex"
+   setTimeout(()=>{
+    spinner.style.display="none"
+    mainModalSection.style.transform="translateY(-1800px)";
+      },1000)   
+       
+    
 }
+
+const createAccountForm=document.querySelector("#createAccountForm")
+
+const createAccountSpinner=document.querySelector("#CreateAccount-spinner")
+
+createAccountForm.onsubmit=(e)=>{
+    e.preventDefault()
+    createAccountSpinner.style.display="flex"
+   setTimeout(()=>{
+    createAccountSpinner.style.display="none"
+    mainModalSection.style.transform="translateY(-1800px)";
+      },1000)   
+       
+    
+}
+
+
+
+
 
 const UserSearch=document.querySelector("#search-user")
 const arr=[]

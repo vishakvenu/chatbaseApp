@@ -15,12 +15,15 @@
      <div class="modal-box login " id="LoginModal">
      <i class="fas fa-user"></i>
       <h2>Login</h2>
-      <form class="login-form">
+      <form class="login-form" id="login-form">
       <input type="email" id="email" placeholder="test@gmail.com" autocomplete="off" required>
       <input type="password" id="password" placeholder="password" autocomplete="off" required>
         <h4 class="error-message">Invalid Username</h4>
          <button type="submit" id="loginBtn" class="loginBtn">Login</button>
-          
+         <div class="Login-spinner" id="Login-spinner">
+             
+          <img src="img/spinner.gif">
+         </div>
       </form>
       <p>New here!! please
       <a href="#" id="CreateAccount" class="CreateAccount">Create account</a></p>
@@ -29,24 +32,28 @@
      <form id="createAccountForm" class="createAccountForm">
         <div class="row">
         <div class="col-12 col-md-6">
-         <input type="text" id="firstname" placeholder="Firt Name">
+         <input type="text" id="firstname" placeholder="First Name"  autocomplete="off">
             
         </div>
         <div class="col-12 col-md-6">
-         <input type="text" id="lastname" placeholder="Last Name">
+         <input type="text" id="lastname" placeholder="Last Name"  autocomplete="off">
             
         </div>
             
         </div>
-         <input type="email" id="createAccountEmail" placeholder="email">
-         <input type="text" placeholder="password"></input>
-         <input type="text" placeholder="Confirm password">
+         <input type="email" id="createAccountEmail" placeholder="email" autocomplete="off">
+         <input type="text" placeholder="password" autocomplete="off"></input>
+         <input type="text" placeholder="Confirm password" autocomplete="off">
          
          <div class="file">
              <input type="file" id="file" placeholder="profile pic">
          </div>
          <div id="success-message" class="success-message">Account SuccessFully  Created </div>
          <button type="submit" id="CreateAccountBtn">Create Account</button>
+         <div class="CreateAccount-spinner" id="CreateAccount-spinner">
+             
+          <img src="img/spinner.gif">
+         </div>
      </form>
      
      <p>or Already a user? 
