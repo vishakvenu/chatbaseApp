@@ -43,20 +43,7 @@ loginForm.onsubmit=(e)=>{
     
 }
 
-const createAccountForm=document.querySelector("#createAccountForm")
 
-const createAccountSpinner=document.querySelector("#CreateAccount-spinner")
-
-createAccountForm.onsubmit=(e)=>{
-    e.preventDefault()
-    createAccountSpinner.style.display="flex"
-   setTimeout(()=>{
-    createAccountSpinner.style.display="none"
-    mainModalSection.style.transform="translateY(-1800px)";
-      },1000)   
-       
-    
-}
 
 
 

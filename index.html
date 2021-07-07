@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 		<link rel="stylesheet" href="css/style.css">
+		<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script><script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script><script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script><script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
 	</head>
 
 	<body>
@@ -42,13 +43,14 @@
             
         </div>
          <input type="email" id="createAccountEmail" placeholder="email" autocomplete="off">
-         <input type="text" placeholder="password" autocomplete="off"></input>
-         <input type="text" placeholder="Confirm password" autocomplete="off">
+         <input type="text" placeholder="password" autocomplete="off" id="createAccountPassword"></input>
+         <input type="text" placeholder="Confirm password" autocomplete="off" id="createAccountConfirmPassword">
          
          <div class="file">
              <input type="file" id="file" placeholder="profile pic">
          </div>
-         <div id="success-message" class="success-message">Account SuccessFully  Created </div>
+         <p style="color:red;text-align:left" id="fileError"></p>
+         <div id="success-mesg" class="success-mesg">Account SuccessFully  Created </div>
          <button type="submit" id="CreateAccountBtn">Create Account</button>
          <div class="CreateAccount-spinner" id="CreateAccount-spinner">
              
@@ -87,10 +89,10 @@
             <div class="profile-card">
                <h7 class="py-1">MY ACCOUNT</h7>
                 <div class="profile-image">
-                    <img src="img/pexels-daniel-torobekov-4628295.jpg">
+                    <img src="img/userImage.jpg" id="UserProfileImage">
                 </div>
-                <h4>Sreerag As</h3>
-                <h6>Sreerag @gmail.com</h6>
+                <h4 id="UserProfileName">Sreerag As</h3>
+                <h6 id="UserProfileEmail">Sreerag @gmail.com</h6>
                 
                 
             </div>
@@ -101,63 +103,8 @@
                     </div>
                 </div>
              <div class="Users">
-                 <ul>
-                     <li id="user-profile">
-                        <div class="profile-pic-wrapper">
-                            <img src="img/pexels-daniel-torobekov-4628295.jpg">
-                            
-                        </div>
-                         
-                         <h6 class="userName">Sreeragh</h4>
-                     </li>
-                      <li id="user-profile">
-                        <div class="profile-pic-wrapper">
-                            <img src="img/pexels-daniel-torobekov-4628295.jpg">
-                            
-                        </div>
-                         
-                         <h6 class="userName">Anu Ramesh</h4>
-                     </li>
-                      <li id="user-profile">
-                        <div class="profile-pic-wrapper">
-                            <img src="img/pexels-daniel-torobekov-4628295.jpg">
-                            
-                        </div>
-                         
-                         <h6 class="userName">Hari shankar</h4>
-                     </li>
-                      <li id="user-profile">
-                        <div class="profile-pic-wrapper">
-                            <img src="img/pexels-daniel-torobekov-4628295.jpg">
-                            
-                        </div>
-                         
-                         <h6 class="userName">vishnu kunjmon</h4>
-                     </li>
-                      <li id="user-profile">
-                        <div class="profile-pic-wrapper">
-                            <img src="img/pexels-daniel-torobekov-4628295.jpg">
-                            
-                        </div>
-                         
-                         <h6 class="userName">Anandhu</h4>
-                     </li>
-                      <li id="user-profile">
-                        <div class="profile-pic-wrapper">
-                            <img src="img/pexels-daniel-torobekov-4628295.jpg">
-                            
-                        </div>
-                         
-                         <h6 class="userName">vivvek</h4>
-                     </li>
-                      <li id="user-profile">
-                        <div class="profile-pic-wrapper">
-                            <img src="img/pexels-daniel-torobekov-4628295.jpg">
-                            
-                        </div>
-                         
-                         <h6 class="userName">sreehari</h4>
-                     </li>
+                 <ul id="UsersOnBoard">
+                     
                  </ul>
                  
              </div> 
@@ -174,12 +121,12 @@
           <nav>
              <div class="left-nav">
              <button class="btn"><i class="fa fa-bars"></i></button> 
-              <h6>Welcome <strong>VISAKH</strong></h6>
+              <h6>Welcome <strong id="messageUserName">VISAKH</strong></h6>
                  
              </div>
               
               <ul>
-                  <li>Logout <i class="ml-2 fas fa-sign-out-alt"></i></li>
+                  <li id="AuthLogoutLink">Logout <i class="ml-2 fas fa-sign-out-alt"></i></li>
               </ul>
           </nav> 
           <div class="message-box">
@@ -194,7 +141,7 @@
               </ul>
               <div class="input-section">
                   <div class="input-user-image">
-                      <img src="img/pexels-daniel-torobekov-4628295.jpg">
+                      <img src="img/userImage.jpg" id="SendMessageUserPic">
                   </div>
                   <form class="input-form">
                   <input type="text" placeholder="write message" id="txt-message" autocomplete="off">
@@ -206,7 +153,21 @@
         </div>
     </div>
         </div>
+        <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDd88pT0OHeYVY9schamRhuw-tyRXGhzGM",
+    authDomain: "notesapp-e9078.firebaseapp.com",
+    projectId: "notesapp-e9078",
+    storageBucket: "notesapp-e9078.appspot.com",
+    messagingSenderId: "80573655985",
+    appId: "1:80573655985:web:7c4932c43df722163b2b90"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
 
         <script src="js/script.js"></script>
+        <script src="js/db.js"></script>
 	</body>
 </html>
