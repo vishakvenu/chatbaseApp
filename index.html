@@ -130,15 +130,23 @@
               </ul>
           </nav> 
           <div class="message-box">
+             <div class="delete-message-overlay">
+             <div class="delete-message-box">
+                 <p>Do You Want To delete?</p>
+                 <button id="ok">Delete</button>
+                 <button id="cancel" class="cancel">cancel</button>
+             </div>
+              </div>
               <ul id="messageList">
-                 <li>
-                     <div class="message">${value}</div>
+                <img id="message-waiting-spinner" class="message-waiting-spinner" src="img/spinner.gif" />
+                  <li>
+                      <div class="message">${value}</div>
                   <div class="delete-btn">
                       <i class="fas fa-trash-alt"></i>
                   </div>
-                 </li>
-                  
+                  </li>
               </ul>
+             
               <div class="input-section">
                   <div class="input-user-image">
                       <img src="img/userImage.jpg" id="SendMessageUserPic">

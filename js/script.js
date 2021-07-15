@@ -29,19 +29,7 @@ secondLink.onclick=()=>{
     loginModal.classList.add('show-modal')
     loginModal.classList.remove('hide-modal')
 }
-const loginForm=document.querySelector("#login-form")
-const spinner=document.querySelector("#Login-spinner")
 
-loginForm.onsubmit=(e)=>{
-    e.preventDefault()
-    spinner.style.display="flex"
-   setTimeout(()=>{
-    spinner.style.display="none"
-    mainModalSection.style.transform="translateY(-1800px)";
-      },1000)   
-       
-    
-}
 
 
 
@@ -68,24 +56,31 @@ UserSearch.oninput=(e)=>{
   
 }
 
-
-
-
-
-const inputForm=document.querySelector(".input-form")
-
-const MessageList=document.querySelector("#messageList")
-console.log
-inputForm.onsubmit=(e)=>{
-    e.preventDefault()
-    const value=inputForm['txt-message'].value
-    console.log(value)
-    
-    const li=document.createElement("li")
-    li.innerHTML=`<div class="message">${value}</div>
-                  <div class="delete-btn">
-                      <i class="fas fa-trash-alt"></i>
-                  </div>`
-    MessageList.appendChild(li)
-    inputForm.reset()
+const overlayDelete=document.querySelector(".delete-message-overlay")
+console.log(overlayDelete)
+overlayDelete.onclick=(e)=>{
+    if(e.target.classList.contains("delete-message-overlay")||e.target.classList.contains("cancel")){
+       overlayDelete.style.display="none"
+       }
+  
 }
+
+
+
+//const inputForm=document.querySelector(".input-form")
+//
+//const MessageList=document.querySelector("#messageList")
+//console.log
+//inputForm.onsubmit=(e)=>{
+//    e.preventDefault()
+//    const value=inputForm['txt-message'].value
+//    console.log(value)
+//    
+//    const li=document.createElement("li")
+//    li.innerHTML=`<div class="message">${value}</div>
+//                  <div class="delete-btn">
+//                      <i class="fas fa-trash-alt"></i>
+//                  </div>`
+//    MessageList.appendChild(li)
+//    inputForm.reset()
+//}
