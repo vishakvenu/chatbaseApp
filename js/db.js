@@ -54,6 +54,7 @@ createAccountForm.onsubmit=(e)=>{
                          renderUserList()  
                         createAccountSpinner.style.display="none"
                         mainModalSection.style.transform="translateY(-1800px)";
+                        createAccountForm.reset()
                         })
                     })
                     
@@ -108,6 +109,7 @@ AuthLogout.onclick=()=>{
     auth.signOut()
     .then(()=>{
         mainModalSection.style.transform="translateY(0)";
+        window.location.reload()
     })
 }
 
@@ -143,13 +145,15 @@ loginForm.onsubmit=(e)=>{
     const email=loginForm['email'].value
     const password=loginForm['password'].value
     auth.signInWithEmailAndPassword(email,password)
-    .then(
-        setTimeout(()=>{
+    .then(()=>{
+        
+    
+    loginForm.reset()
     spinner.style.display="none"
-    mainModalSection.style.transform="translateY(-1800px)";
-      },1000)   
-       
+    mainModalSection.style.transform="translateY(-1800px)"; 
+     }  
     ).catch(err=>{
+        spinner.style.display="none"
         LoginError.innerText=err.message
     })
    
