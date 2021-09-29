@@ -56,14 +56,7 @@ UserSearch.oninput=(e)=>{
   
 }
 
-const overlayDelete=document.querySelector(".delete-message-overlay")
-console.log(overlayDelete)
-overlayDelete.onclick=(e)=>{
-    if(e.target.classList.contains("delete-message-overlay")||e.target.classList.contains("cancel")){
-       overlayDelete.style.display="none"
-       }
-  
-}
+
 
 
 

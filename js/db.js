@@ -51,14 +51,16 @@ createAccountForm.onsubmit=(e)=>{
                     createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                     img:ImageUrl
                 }).then((res)=>{
-                         renderUserList()  
+//                         renderUserList()  
                         createAccountSpinner.style.display="none"
                         mainModalSection.style.transform="translateY(-1800px)";
                         createAccountForm.reset()
+                        window.location.reload()
                         })
                     })
                     
                     })
+                
                 
             })
             .catch(err=>{
@@ -149,8 +151,12 @@ loginForm.onsubmit=(e)=>{
         
     
     loginForm.reset()
-    spinner.style.display="none"
+        setTimeout(()=>{
+             spinner.style.display="none"
     mainModalSection.style.transform="translateY(-1800px)"; 
+            window.location.reload()
+        },2000)
+   
      }  
     ).catch(err=>{
         spinner.style.display="none"
@@ -172,27 +178,88 @@ console.log
 inputForm.onsubmit=(e)=>{
     e.preventDefault()
     const value=inputForm['txt-message'].value.trim()
-    console.log(value)   
+//    console.log(value)   
+    db.collection('message').doc(CopieduserID).collection("personal").add({
+        message:value,
+        time:firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(res=>{
+        console.log(res)
+    })
     
     
     
-    const li=document.createElement("li")
-    li.innerHTML=`<div class="message">${value}</div>
-                  <div class="delete-btn">
-                      <i class="fas fa-trash-alt"></i>
-                  </div>`
-    li.onclick=(e)=>{
-        if(e.target.classList.contains('delete-btn') ||e.target.classList.contains('fa-trash-alt') ){
-           let overlay=MessageList.parentElement
-           overlay.querySelector(".delete-message-overlay").style.display="flex";
-        }
-    }
-    MessageList.appendChild(li)
-   
-    inputForm.reset()
+    
 }
 
 function deleter(e){
     console.log(e)
         alert(1)
     }
+
+console.log("hi")
+
+
+setTimeout(()=>{
+    db.collection('message').doc(CopieduserID).collection("personal").onSnapshot(snapshot=>{
+//     console.log(snapshot)
+        let changes=snapshot.docChanges()
+        console.log(changes)
+     changes.forEach(change=>{
+         if(change.type==="added"){
+             renderCafe(change.doc.data(),change.doc.id)
+             messageSpinner.style.display="none"
+         }
+         if(change.type==="removed"){
+            let item=MessageList.querySelector(`[data-id=${change.doc.id}]`)
+             MessageList.removeChild(item)
+         }
+     })
+ })
+     
+},3000)
+
+const confirmBtn=document.querySelector("#ok")
+ 
+     function renderCafe(item,idVal){
+         
+//         console.log(item)
+        const li=document.createElement("li")
+        li.setAttribute('data-id',idVal)
+    li.innerHTML=`<div class="message">${item.message} </div>
+                  <div class="delete-btn">
+                      <i class="fas fa-trash-alt"></i>
+                  </div>`
+    li.onclick=(e)=>{
+        if(e.target.classList.contains('delete-btn') ||e.target.classList.contains('fa-trash-alt') ){
+           let overlay=MessageList.parentElement;
+           overlay.querySelector(".delete-message-overlay").style.display="flex";
+            let itemId=e.target.parentElement.parentElement.getAttribute('data-id')
+            console.log(itemId)
+           confirmBtn.onclick=()=>{
+//               messageSpinner.style.display="block"
+               db.collection('message').doc(CopieduserID).collection("personal").doc(itemId).delete().then(res=>{
+//                   messageSpinner.style.display="none"
+                   console.log("item removed")
+               overlayDelete.style.display="none"})
+}
+//            console.log(itemId)
+//         
+        }
+        
+    }
+    MessageList.appendChild(li)
+   
+    inputForm.reset()
+     }
+         
+const overlayDelete=document.querySelector(".delete-message-overlay")
+
+console.log(confirmBtn)
+overlayDelete.onclick=(e)=>{
+    if(e.target.classList.contains("delete-message-overlay")||e.target.classList.contains("cancel")){
+       overlayDelete.style.display="none"
+       }
+  
+}
+
