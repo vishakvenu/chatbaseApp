@@ -178,7 +178,8 @@ console.log
 inputForm.onsubmit=(e)=>{
     e.preventDefault()
     const value=inputForm['txt-message'].value.trim()
-//    console.log(value)   
+//    console.log(value)  
+if(value){
     db.collection('message').doc(CopieduserID).collection("personal").add({
         message:value,
         time:firebase.firestore.FieldValue.serverTimestamp()
@@ -186,6 +187,10 @@ inputForm.onsubmit=(e)=>{
     .then(res=>{
         console.log(res)
     })
+    
+} else{
+    alert("enter the text")
+}
     
     
     
