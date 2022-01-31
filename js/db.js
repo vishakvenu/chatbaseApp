@@ -19,7 +19,7 @@ file.onchange=(e)=>{
 
 
 
-createAccountForm.onsubmit=(e)=>{
+createAccountForm.onsubmit=async(e)=>{
     e.preventDefault()
     createAccountSpinner.style.display="flex"
     
@@ -87,7 +87,7 @@ const MessageUserName=document.querySelector('#messageUserName')
 const sendUserPic=document.querySelector('#SendMessageUserPic')
 
 let CopieduserID=''
-auth.onAuthStateChanged(user=>{
+auth.onAuthStateChanged(async(user)=>{
     if(user){
         console.log(user)
         CopieduserID=user.uid
@@ -98,25 +98,30 @@ auth.onAuthStateChanged(user=>{
         userName.innerText=user.displayName
         userEmail.innerText=user.email
         mainModalSection.style.transform="translateY(-1800px)";
-        
-    }else{
-        mainModalSection.style.transform="translateY(0)";
-    }
-})
+        if(CopieduserID){
+            try {
+                db.collection('message').doc(CopieduserID).collection("personal").onSnapshot(snapshot=>{
+                    //     console.log(snapshot)
+                            let changes=snapshot.docChanges()
+                            console.log(changes)
+                         changes.forEach(change=>{
+                             if(change.type==="added"){
+                                 renderCafe(change.doc.data(),change.doc.id)
+                                 messageSpinner.style.display="none"
+                             }
+                             if(change.type==="removed"){
+                                let item=MessageList.querySelector(`[data-id=${change.doc.id}]`)
+                                 MessageList.removeChild(item)
+                             }
+                         })
+                     })
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
 
-
-const AuthLogout=document.querySelector('#AuthLogoutLink')
-
-AuthLogout.onclick=()=>{
-    auth.signOut()
-    .then(()=>{
-        mainModalSection.style.transform="translateY(0)";
-        window.location.reload()
-    })
-}
-
-const userList=document.querySelector("#UsersOnBoard")
-db.collection('users').onSnapshot((snapShot)=>{
+        const userList=document.querySelector("#UsersOnBoard")
+    db.collection('users').onSnapshot((snapShot)=>{
     let changes=snapShot.docChanges()
     changes.forEach((change)=>{
         if(change.type==='added'){
@@ -135,6 +140,24 @@ db.collection('users').onSnapshot((snapShot)=>{
         }
     })
 })
+       
+    }else{
+        mainModalSection.style.transform="translateY(0)";
+    }
+})
+
+
+const AuthLogout=document.querySelector('#AuthLogoutLink')
+
+AuthLogout.onclick=()=>{
+    auth.signOut()
+    .then(()=>{
+        mainModalSection.style.transform="translateY(0)";
+        window.location.reload()
+    })
+}
+
+
 
 
 const loginForm=document.querySelector("#login-form")
@@ -177,15 +200,16 @@ const messageSpinner=document.querySelector('#message-waiting-spinner')
 console.log
 inputForm.onsubmit=(e)=>{
     e.preventDefault()
-    const value=inputForm['txt-message'].value.trim()
+    const valueInput=inputForm['txt-message'].value.trim()
 //    console.log(value)  
-if(value){
+if(valueInput){
     db.collection('message').doc(CopieduserID).collection("personal").add({
-        message:value,
+        message:valueInput,
         time:firebase.firestore.FieldValue.serverTimestamp()
     })
     .then(res=>{
         console.log(res)
+        valueInput.value=""
     })
     
 } else{
@@ -205,24 +229,29 @@ function deleter(e){
 console.log("hi")
 
 
-setTimeout(()=>{
-    db.collection('message').doc(CopieduserID).collection("personal").onSnapshot(snapshot=>{
-//     console.log(snapshot)
-        let changes=snapshot.docChanges()
-        console.log(changes)
-     changes.forEach(change=>{
-         if(change.type==="added"){
-             renderCafe(change.doc.data(),change.doc.id)
-             messageSpinner.style.display="none"
-         }
-         if(change.type==="removed"){
-            let item=MessageList.querySelector(`[data-id=${change.doc.id}]`)
-             MessageList.removeChild(item)
-         }
-     })
- })
+// setTimeout(()=>{
+//     try {
+//         db.collection('message').doc(CopieduserID).collection("personal").onSnapshot(snapshot=>{
+//             //     console.log(snapshot)
+//                     let changes=snapshot.docChanges()
+//                     console.log(changes)
+//                  changes.forEach(change=>{
+//                      if(change.type==="added"){
+//                          renderCafe(change.doc.data(),change.doc.id)
+//                          messageSpinner.style.display="none"
+//                      }
+//                      if(change.type==="removed"){
+//                         let item=MessageList.querySelector(`[data-id=${change.doc.id}]`)
+//                          MessageList.removeChild(item)
+//                      }
+//                  })
+//              })
+//     } catch (error) {
+//         console.log(error.message)
+//     }
+    
      
-},3000)
+// },3000)
 
 const confirmBtn=document.querySelector("#ok")
  
